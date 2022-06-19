@@ -1,0 +1,48 @@
+name: NextJS Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+        
+    - name: Install node modules
+      run: |
+        npm ci
+
+    - name: Build website
+      run: |
+        npm run build
+        npm run export
+
+    # Publish built website to gh-pages branch.
+    # ===============================
+    - name: Commit website changes
+      run: |
+        rm -rf docs # not sure if this is needed...
+        mkdir docs
+        cp -rf out/* docs/
+        cd docs
+        echo "desktopdyno.org" > CNAME
+        touch .nojekyll # need this due to "_*" dirs getting ignored by GitHub
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git commit -m "Update website" -a || true
+        # The above command will fail if no changes were present, so we ignore that.
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        branch: gh-pages
+        force: true
+        directory: docs
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+    # ===============================

@@ -16,7 +16,7 @@ We are *loosely* using the "web app" part of it, and mostly using it to build st
 
 To develop this website:
 
-1. Need to install [Node.js](https://nodejs.org/) (>= v18.4.0 per `node -v`) and [npm](https://www.npmjs.com/) (>= 8.12.1 per `npm -v`)
+1. Need to install [Node.js](https://nodejs.org/)
 2. Clone this repo
 3. Install required modules: `npm install` -- this installs the node modules locally in `node_modules/`
 4. Run auto-reload dev server: `npm run dev`
