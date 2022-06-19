@@ -4,9 +4,9 @@ Attempt to build a NextJS-based web-app as the desktopdyno.org website.
 
 ## TODO
 
-[ ] Build layout blog-based site
-[ ] Create markdown-based posts that auto-render into static HTML pages on export
-[ ] Add interactive components into the markdown docs using MDX
+- [ ] Build layout blog-based site
+- [ ] Create markdown-based posts that auto-render into static HTML pages on export
+- [ ] Add interactive components into the markdown docs using MDX
 
 ## Development
 
